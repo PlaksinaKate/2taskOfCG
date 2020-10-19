@@ -30,7 +30,7 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
     }
 
     private void drawAll(LineDrawer lineDrawer) {
-        DrawUtils.drawSnowflake(lineDrawer, getWidth() / 2, getHeight() / 2, 50, 50);
+        DrawUtils.drawSnowflake(lineDrawer, getWidth() / 2, getHeight() / 2, 50, 25);
         lineDrawer.drawLine(getWidth() / 2, getHeight() / 2, position.x, position.y);
     }
 
