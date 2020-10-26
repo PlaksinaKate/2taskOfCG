@@ -29,7 +29,7 @@ public class WuLineDrawer implements LineDrawer {
         int d0 = 0;
         if (dx > dy) {
             for (int i = 0; i <= dx; i++) {
-                drawPixelAsWu(x1, y1, dx, dy, d0);
+                drawPixelAsWu(x1, y1, x2, y2, dx, dy, d0);
                 d0 += 2 * dy;
                 if (y1 > y2 && d0 > dx) {
                     y1--;
@@ -46,7 +46,7 @@ public class WuLineDrawer implements LineDrawer {
             }
         } else {
             for (int i = 0; i <= dy; i++) {
-                drawPixelAsWu(x1, y1, dx, dy, d0);
+                drawPixelAsWu(x1, y1, x2, y2, dx, dy, d0);
                 d0 += 2 * dx;
                 if (x1 > x2 && d0 > dy) {
                     x1--;
@@ -64,13 +64,13 @@ public class WuLineDrawer implements LineDrawer {
         }
     }
 
-    public void drawPixelAsWu(int x1, int y1, int dx, int dy, int d0) {
+    public void drawPixelAsWu(int x1, int y1, int x2, int y2, int dx, int dy, int d0) {
         int d;
         boolean replace = Math.abs(dx) > Math.abs(dy);
         if (replace) {
             d = dx != 0 ? (255 * d0) / (2 * dx) : 255;
         } else {
-            d = dx != 0 ? (255 * d0) / (2 * dy) : 255;
+            d = dy != 0 ? (255 * d0) / (2 * dy) : 255;
         }
         int dPos = Math.max(0, d);
 //        int dNeg = Math.max(0, -d);
@@ -83,18 +83,32 @@ public class WuLineDrawer implements LineDrawer {
         if (replace) {
             pd.drawPixel(x1, y1, c1);
             if (dx != 0) {
-                if (dPos > 0)
-                    pd.drawPixel(x1, y1 + 1, c2);
-                else
-                    pd.drawPixel(x1, y1 - 1, c2);
+                if (y1 > y2) {
+                    if (dPos > 0)
+                        pd.drawPixel(x1, y1 - 1, c2);
+                    else
+                        pd.drawPixel(x1, y1 + 1, c2);
+                } else {
+                    if (dPos > 0)
+                        pd.drawPixel(x1, y1 + 1, c2);
+                    else
+                        pd.drawPixel(x1, y1 - 1, c2);
+                }
             }
         } else {
             pd.drawPixel(x1, y1, c1);
             if (dy != 0) {
-                if (dPos > 0)
-                    pd.drawPixel(x1 + 1, y1, c2);
-                else
-                    pd.drawPixel(x1 - 1, y1, c2);
+                if (x1 >= x2) {
+                    if (dPos > 0)
+                        pd.drawPixel(x1 - 1, y1, c2);
+                    else
+                        pd.drawPixel(x1 + 1, y1, c2);
+                } else {
+                    if (dPos > 0)
+                        pd.drawPixel(x1 + 1, y1, c2);
+                    else
+                        pd.drawPixel(x1 - 1, y1, c2);
+                }
 
             }
         }
