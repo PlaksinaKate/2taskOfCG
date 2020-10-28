@@ -15,17 +15,9 @@ public class WuLineDrawer implements LineDrawer {
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-        int dx = x2 - x1;
-        int dy = y2 - y1;
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
 
-        if (y1 > y2 && !(x1 > x2)) {
-            dy = y1 - y2;
-        } else if (x1 > x2 && !(y1 > y2)) {
-            dx = x1 - x2;
-        } else if (y1 > y2) {
-            dy = y1 - y2;
-            dx = x1 - x2;
-        }
         int count = 1;
         int d0 = 0;
         if (dx > dy) {
