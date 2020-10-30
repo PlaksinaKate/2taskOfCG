@@ -26,8 +26,8 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         //LineDrawer lineDrawer = new BresenhamLineDrawer(pd);
         LineDrawer lineDrawer = new WuLineDrawer(pd);
         drawAll(lineDrawer);
-        ArcDrawer arcDrawer = new BresenhamArcDrawer(pd);
-        arcDrawer.drawArc(getWidth()/2, getHeight() / 2, 100, 100, 0, 80);
+        //ArcDrawer arcDrawer = new BresenhamArcDrawer(pd);
+        //arcDrawer.drawArc(getWidth()/2, getHeight() / 2, 100, 100, 0, 80);
         g.drawImage(bi, 0, 0, null);
         bi_g.dispose();
     }
