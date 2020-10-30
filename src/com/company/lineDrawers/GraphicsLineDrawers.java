@@ -1,7 +1,5 @@
 package com.company.lineDrawers;
 
-import com.company.LineDrawer;
-
 import java.awt.*;
 
 public class GraphicsLineDrawers implements LineDrawer {

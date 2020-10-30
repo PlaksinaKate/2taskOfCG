@@ -1,6 +1,5 @@
 package com.company.lineDrawers;
 
-import com.company.LineDrawer;
 import com.company.PixelDrawer;
 
 import java.awt.*;

@@ -1,6 +1,6 @@
 package com.company.utills;
 
-import com.company.LineDrawer;
+import com.company.lineDrawers.LineDrawer;
 
 public class DrawUtils {
     public static void drawSnowflake(LineDrawer ld, int x, int y, int r, int n) {

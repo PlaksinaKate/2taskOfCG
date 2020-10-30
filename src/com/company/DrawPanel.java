@@ -1,9 +1,8 @@
 package com.company;
 
-import com.company.lineDrawers.BresenhamLineDrawer;
-import com.company.lineDrawers.DDALineDrawer;
-import com.company.lineDrawers.GraphicsLineDrawers;
-import com.company.lineDrawers.WuLineDrawer;
+import com.company.arc.ArcDrawer;
+import com.company.arc.BresenhamArcDrawer;
+import com.company.lineDrawers.*;
 import com.company.utills.DrawUtils;
 
 import javax.swing.*;
@@ -27,6 +26,8 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         //LineDrawer lineDrawer = new BresenhamLineDrawer(pd);
         LineDrawer lineDrawer = new WuLineDrawer(pd);
         drawAll(lineDrawer);
+        ArcDrawer arcDrawer = new BresenhamArcDrawer(pd);
+        arcDrawer.drawArc(getWidth()/2, getHeight() / 2, 100, 100, 0, 80);
         g.drawImage(bi, 0, 0, null);
         bi_g.dispose();
     }
