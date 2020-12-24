@@ -12,7 +12,7 @@ public class DDALineDrawer implements LineDrawer {
     }
 
     @Override
-    public void drawLine(int x1, int y1, int x2, int y2) {
+    public void drawLine(int x1, int y1, int x2, int y2,Color color) {
         double dx = x2 - x1;
         double dy = y2 - y1;
         if (Math.abs(dx) > Math.abs(dy)) {

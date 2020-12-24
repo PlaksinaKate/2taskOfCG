@@ -3,15 +3,15 @@ package com.company;
 import java.awt.*;
 
 public class GraphicsPixelDrawer implements PixelDrawer {
-    private Graphics g;
+    private GraphicsProvider gp;
 
-    public GraphicsPixelDrawer(Graphics g) {
-        this.g = g;
+    public GraphicsPixelDrawer(GraphicsProvider gp) {
+        this.gp = gp;
     }
 
     @Override
     public void drawPixel(int x, int y, Color c) {
-        g.setColor(c);
-        g.fillRect(x, y, 1, 1);
+        gp.getGraphics().setColor(c);
+        gp.getGraphics().fillRect(x, y, 1, 1);
     }
 }
