@@ -1,12 +1,10 @@
-package com.company.testing;
-//import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.*;
-//import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.graphics_impl.PrimitivesFactoryWithDefaultGraphicsImplementation;
+package com.company.test.testing;
 
-import com.company.GraphicsProvider;
-import com.company.PieDrawer;
-import com.company.PieFiller;
-import com.company.PrimitivesFactoryWithDefaultGraphicsImplementation;
-import com.company.arc.ArcDrawer;
+import com.company.test.ArcDrawer;
+import com.company.test.GraphicsProvider;
+import com.company.test.PieDrawer;
+import com.company.test.PieFiller;
+import com.company.test.graphics_impl.PrimitivesFactoryWithDefaultGraphicsImplementation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -87,7 +85,7 @@ public class TestArcs {
         };
     }
 
-    private static BufferedImage fullTest(PrimitivesFactoryWithDefaultGraphicsImplementation factory, ArcPieDrawerProvider provider, boolean withMarkers,FullTestConfig cfg) {
+    private static BufferedImage fullTest(PrimitivesFactoryWithDefaultGraphicsImplementation factory, ArcPieDrawerProvider provider, boolean withMarkers, FullTestConfig cfg) {
         return fullTest(factory, provider, withMarkers, cfg.r_hor, cfg.r_vert, cfg.from_start, cfg.to_start, cfg.start_step, cfg.from_shift, cfg.to_shift, cfg.shift_step);
     }
 
@@ -259,3 +257,4 @@ public class TestArcs {
         }
     }
 }
+

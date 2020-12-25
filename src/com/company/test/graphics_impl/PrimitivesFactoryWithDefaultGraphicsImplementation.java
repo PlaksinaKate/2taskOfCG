@@ -1,15 +1,15 @@
-package com.company;
+package com.company.test.graphics_impl;
 
-import com.company.arc.ArcDrawer;
-import com.company.arc.ArcDrawerFactoryByPixelDrawer;
-import com.company.arc.GraphicsArcDrawer;
-import com.company.lineDrawers.GraphicsLineDrawer;
-import com.company.lineDrawers.LineDrawer;
-import com.company.lineDrawers.LineDrawerFactoryByPixelDrawer;
-import com.company.pie.GraphicsPieDrawer;
-import com.company.pie.GraphicsPieFiller;
-import com.company.pie.PieDrawerFactoryByPixelDrawer;
-import com.company.pie.PieFillerFactoryByPixelDrawer;
+
+import com.company.test.*;
+import com.company.test.graphics_impl.arc.ArcDrawerFactoryByPixelDrawer;
+import com.company.test.graphics_impl.arc.GraphicsArcDrawer;
+import com.company.test.graphics_impl.line.GraphicsLineDrawer;
+import com.company.test.graphics_impl.line.LineDrawerFactoryByPixelDrawer;
+import com.company.test.graphics_impl.pie.GraphicsPieDrawer;
+import com.company.test.graphics_impl.pie.GraphicsPieFiller;
+import com.company.test.graphics_impl.pie.PieDrawerFactoryByPixelDrawer;
+import com.company.test.graphics_impl.pie.PieFillerFactoryByPixelDrawer;
 
 public class PrimitivesFactoryWithDefaultGraphicsImplementation {
 

@@ -1,17 +1,16 @@
-//package com.company.arc;
-//
-//import com.company.PixelDrawer;
-//import com.company.lineDrawers.LineDrawer;
-//
-//import java.awt.*;
-//
-//public class BresenhamArcDrawer implements ArcDrawer {
-//    private PixelDrawer pd;
-//
-//    public BresenhamArcDrawer(PixelDrawer pd) {
-//        this.pd = pd;
-//    }
-//
+package com.company.arc;
+
+import com.company.PixelDrawer;
+
+import java.awt.*;
+
+public class BresenhamArcDrawer implements ArcDrawer {
+    private PixelDrawer pd;
+
+    public BresenhamArcDrawer(PixelDrawer pd) {
+        this.pd = pd;
+    }
+
 //    @Override
 //    public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
 //        int x2 = 0;
@@ -96,4 +95,97 @@
 //
 //        }
 //    }
-//}
+
+    @Override
+    public void drawArc(int x, int y, int width, int height, double startAngle, double arcAngle, Color c) {
+        int _x = 0; // Компонента x
+        int _y = height; // Компонента y
+        int width_sqr = width * width; // a^2, a - большая полуось
+        int height_sqr = height * height; // b^2, b - малая полуось
+        int delta = 4 * height_sqr * ((_x + 1) * (_x + 1)) + width_sqr * ((2 * _y - 1) * (2 * _y - 1)) - 4 * width_sqr * height_sqr; // Функция координат точки (x+1, y-1/2)
+        startAngle = Math.PI * startAngle / 180;
+        arcAngle = Math.PI * arcAngle / 180;
+        int xS = (int) (x + width / 2 * Math.cos(startAngle));
+        int yS = (int) (y + height / 2 * Math.cos(startAngle));
+        int xA = (int) (xS + width / 2 * Math.cos(arcAngle));
+        int yA = (int) (yS + height / 2 * Math.cos(arcAngle));
+        if (arcAngle == 0) {
+            while (width_sqr * (2 * _y - 1) > 2 * height_sqr * (_x + 1)) {// Первая часть дуги
+                pd.drawPixel(x + _x, y + _y, Color.BLUE);
+                pd.drawPixel(x + _x, y - _y, Color.BLUE);
+                pd.drawPixel(x - _x, y - _y, Color.BLUE);
+                pd.drawPixel(x - _x, y + _y, Color.BLUE);
+                if (delta < 0) {// Переход по горизонтали
+                    _x++;
+                    delta += 4 * height_sqr * (2 * _x + 3);
+                } else {// Переход по диагонали
+                    _x++;
+                    delta = delta - 8 * width_sqr * (_y - 1) + 4 * height_sqr * (2 * _x + 3);
+                    _y--;
+                }
+            }
+            delta = height_sqr * ((2 * _x + 1) * (2 * _x + 1)) + 4 * width_sqr * ((_y + 1) * (_y + 1)) - 4 * width_sqr * height_sqr; // Функция координат точки (x+1/2, y-1)
+            while (_y + 1 != 0) {// Вторая часть дуги, если не выполняется условие первого цикла, значит выполняется a^2(2y - 1) <= 2b^2(x + 1)
+                pd.drawPixel(x + _x, y + _y, Color.BLUE);
+                pd.drawPixel(x + _x, y - _y, Color.BLUE);
+                pd.drawPixel(x - _x, y - _y, Color.BLUE);
+                pd.drawPixel(x - _x, y + _y, Color.BLUE);
+                if (delta < 0) { // Переход по вертикали
+                    _y--;
+                    delta += 4 * width_sqr * (2 * _y + 3);
+                } else {// Переход по диагонали
+                    _y--;
+                    delta = delta - 8 * height_sqr * (_x + 1) + 4 * width_sqr * (2 * _y + 3);
+                    _x++;
+                }
+            }
+        } else {
+            while (xS != xA) {
+                while (width_sqr * (2 * yS - 1) > 2 * height_sqr * (xS + 1)) {// Первая часть дуги
+                    pd.drawPixel(x + xS, y + yS, Color.BLUE);
+                    pd.drawPixel(x + xS, y - yS, Color.BLUE);
+                    pd.drawPixel(x - xS, y - yS, Color.BLUE);
+                    pd.drawPixel(x - xS, y + yS, Color.BLUE);
+                    if (delta < 0) {// Переход по горизонтали
+                        xS++;
+                        delta += 4 * height_sqr * (2 * xS + 3);
+                    } else {// Переход по диагонали
+                        xS++;
+                        delta = delta - 8 * width_sqr * (yS - 1) + 4 * height_sqr * (2 * xS + 3);
+                        yS--;
+                    }
+                }
+                delta = height_sqr * ((2 * xS + 1) * (2 * xS + 1)) + 4 * width_sqr * ((yS + 1) * (yS + 1)) - 4 * width_sqr * height_sqr; // Функция координат точки (x+1/2, y-1)
+                while (_y + 1 != 0) {// Вторая часть дуги, если не выполняется условие первого цикла, значит выполняется a^2(2y - 1) <= 2b^2(x + 1)
+                    pd.drawPixel(x + xS, y + yS, Color.BLUE);
+                    pd.drawPixel(x + xS, y - yS, Color.BLUE);
+                    pd.drawPixel(x - xS, y - yS, Color.BLUE);
+                    pd.drawPixel(x - xS, y + yS, Color.BLUE);
+                    if (delta < 0) { // Переход по вертикали
+                        yS--;
+                        delta += 4 * width_sqr * (2 * yS + 3);
+                    } else {// Переход по диагонали
+                        yS--;
+                        delta = delta - 8 * height_sqr * (xS + 1) + 4 * width_sqr * (2 * yS + 3);
+                        xS++;
+                    }
+                }
+            }
+        }
+    }
+
+//    private void drawEllipse(Ellipse ellipse) {
+//        int[] pos = ellipse.;
+//        int lastX = 0;
+//        for (int i = pos.length - 1; i >= 0; i--) {
+//            while (lastX <= pos[i]) {
+//                drawEllipsePixel;
+//                if (i > 0 && pos[i - 1] == pos[i]) {
+//                    break;
+//                }
+//                lastX++;
+//            }
+//
+//        }
+//    }
+}

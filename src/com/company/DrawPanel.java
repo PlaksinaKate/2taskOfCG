@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.arc.ArcDrawer;
+import com.company.arc.BresenhamArcDrawer;
 import com.company.lineDrawers.*;
 import com.company.ellipse.BresenhamEllipseDrawer;
 import com.company.ellipse.EllipseDrawer;
@@ -22,14 +24,16 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         bi_g.setColor(Color.WHITE);
         bi_g.fillRect(0, 0, getWidth(), getHeight());
         bi_g.setColor(Color.BLACK);
-        //PixelDrawer pd = new GraphicsPixelDrawer(bi_g);
-        pd = new GraphicsPixelDrawer(bi_g);
+        PixelDrawer pd = new GraphicsPixelDrawer(bi_g);
+        //pd = new GraphicsPixelDrawer(bi_g);
         //LineDrawer lineDrawer = new DDALineDrawer(pd);
         //LineDrawer lineDrawer = new BresenhamLineDrawer(pd);
         LineDrawer lineDrawer = new WuLineDrawer(pd);
         EllipseDrawer ellipseDrawer = new BresenhamEllipseDrawer(pd);
+        ArcDrawer arcDrawer = new BresenhamArcDrawer(pd);
         drawAll(lineDrawer);
-        //      drawOval(ellipseDrawer);
+        drawOval(ellipseDrawer);
+        drawArc(arcDrawer);
         //ArcDrawer arcDrawer = new BresenhamArcDrawer(pd);
         //arcDrawer.drawArc(getWidth()/2, getHeight() / 2, 100, 100, 0, 80);
         g.drawImage(bi, 0, 0, null);
@@ -41,9 +45,13 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         lineDrawer.drawLine(getWidth() / 2, getHeight() / 2, position.x, position.y, Color.BLUE);
     }
 
-//    private void drawOval(EllipseDrawer ellipseDrawer) {
-//        ellipseDrawer.ellipseDrawer(getWidth() / 2 + 200, getHeight() / 2 - 50, 200, 100,Color.BLUE);
-//    }
+    private void drawOval(EllipseDrawer ellipseDrawer) {
+        ellipseDrawer.drawEllipse(getWidth() / 2 + 200, getHeight() / 2 - 50, 200, 100);
+    }
+
+    private void drawArc(ArcDrawer arcDrawer) {
+        arcDrawer.drawArc(getWidth() / 2 + 200, getHeight() / 2 - 100, 100, 100, 0, 90, Color.BLUE);
+    }
 
     public DrawPanel() {
         this.addMouseMotionListener(this);

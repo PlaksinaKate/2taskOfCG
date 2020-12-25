@@ -1,8 +1,8 @@
-package com.company;
+package com.company.test;
 
 import java.awt.*;
 
-public interface PieFiller {
+public interface PieDrawer {
 
     /**
      * Рисует сектор по параметрам прямоуголника, описывающего эллипс, частью которого является рисуемая арка
@@ -14,6 +14,6 @@ public interface PieFiller {
      * @param arcAngle угол самой арки <b>в радианах</b>
      * @param c цвет арки
      */
-    void fillPie(int x, int y, int width, int height, double startAngle, double arcAngle, Color c);
+    void drawPie(int x, int y, int width, int height, double startAngle, double arcAngle, Color c);
 }
 

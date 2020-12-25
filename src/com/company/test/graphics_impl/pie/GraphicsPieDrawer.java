@@ -1,7 +1,7 @@
-package com.company.pie;
+package com.company.test.graphics_impl.pie;
 
-import com.company.GraphicsProvider;
-import com.company.PieDrawer;
+import com.company.test.GraphicsProvider;
+import com.company.test.PieDrawer;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
